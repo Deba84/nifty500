@@ -2,7 +2,7 @@ name: Daily Nifty 500 Scan
 
 on:
   schedule:
-    - cron: '30 10 * * 1-5'
+    - cron: '45 11 * * 1-5'
   workflow_dispatch:
 
 jobs:
