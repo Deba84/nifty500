@@ -1,4 +1,4 @@
-name: Daily Nifty 500 Scan v6.2
+name: Daily Nifty 500 Scan v6.2.1
 
 on:
   schedule:
@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -37,7 +37,6 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          # Defaults are also defined in code. Repository Variables can override them.
           GROQ_MODEL: ${{ vars.GROQ_MODEL }}
           GROQ_FALLBACK_MODEL: ${{ vars.GROQ_FALLBACK_MODEL }}
           MIN_RR: '2.0'
@@ -49,10 +48,9 @@ jobs:
 
       - name: Upload scan audit artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
-          name: nifty500-v62-scan-${{ github.run_number }}
+          name: nifty500-v621-scan-${{ github.run_number }}
           path: artifacts/*.json
           if-no-files-found: ignore
           retention-days: 30
-          
