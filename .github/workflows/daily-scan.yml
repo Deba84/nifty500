@@ -1,14 +1,19 @@
-name: Daily Nifty 500 Scan
+name: Daily Nifty 500 Scan v6.2
 
 on:
   schedule:
+    # 11:45 UTC = 5:15 PM IST
     - cron: '45 11 * * 1-5'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   scan:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,12 +26,33 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Run deterministic tests
+        run: python -m unittest discover -s tests -v
 
       - name: Run Nifty 500 Scanner
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Defaults are also defined in code. Repository Variables can override them.
+          GROQ_MODEL: ${{ vars.GROQ_MODEL }}
+          GROQ_FALLBACK_MODEL: ${{ vars.GROQ_FALLBACK_MODEL }}
+          MIN_RR: '2.0'
+          MAX_FUND_CANDIDATES: '40'
+          MAX_POST_FUND_CANDIDATES: '12'
+          MAX_AI_ANALYSIS: '8'
+          MAX_POST_AI_ANALYSIS: '3'
         run: python daily_scan.py
+
+      - name: Upload scan audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nifty500-v62-scan-${{ github.run_number }}
+          path: artifacts/*.json
+          if-no-files-found: ignore
+          retention-days: 30
+          
