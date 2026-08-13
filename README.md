@@ -1,8 +1,19 @@
-# 🌊 Nifty 500 Liquidity + Price Action Scanner v6.2
+# 🌊 Nifty 500 Liquidity + Price Action Scanner v6.2.1
 
 Automated Nifty 500 swing-trading scanner for **1D + 1W Smart Money Concepts (SMC)**. It uses raw OHLC structure and liquidity behaviour—no traditional indicators.
 
-## What v6.2 does
+## v6.2.1 quality improvements
+
+- Strict AI schema requires one review for every submitted top-8 symbol
+- Deterministic breadth replaces free-form AI breadth commentary
+- Fresh age-0/1/2 standalone 52W extremes are filtered out
+- Major caution flags block `PRIME_WATCH`
+- Weak post-sweep confirmation is capped at `WAIT` or `WATCH`
+- Pending post-sweep trade plans remain locked until CHoCH
+- GitHub Actions use Node 24-compatible action versions
+- Pre-sweep `AT LEVEL`/`VERY CLOSE` setups are sent first as `PRE-SWEEP ARMED`; post-sweep pending alerts are de-emphasized
+
+## What v6.2.1 does
 
 ### Pre-sweep watch engine
 

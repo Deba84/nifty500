@@ -1,4 +1,4 @@
-"""Legacy web entry point — intentionally retired in scanner v6.2.
+"""Legacy web entry point — intentionally retired in scanner v6.2.1.
 
 The old Flask app imported ``scan_stock()`` and performed 500 individual
 Yahoo requests.  That function was removed in v6 because it caused severe
@@ -10,7 +10,7 @@ silently reintroducing the slow architecture.
 """
 
 MESSAGE = """
-Nifty 500 Scanner v6.2 uses the GitHub Actions batch workflow.
+Nifty 500 Scanner v6.2.1 uses the GitHub Actions batch workflow.
 The legacy per-stock Flask scanner is retired.
 Run: python daily_scan.py
 """.strip()
