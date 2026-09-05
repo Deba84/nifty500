@@ -1,5 +1,5 @@
 """
-Nifty 500 Liquidity Scanner v6.2.1
+Nifty 500 Liquidity Scanner v6.3.0
 ===================================
 Deterministic SMC + price-action engine.
 
