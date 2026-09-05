@@ -1,5 +1,5 @@
 """
-Daily Nifty 500 scan v6.2.1
+Daily Nifty 500 scan v6.3.0
 Deterministic SMC + price action + closed-world comparative AI review.
 """
 from __future__ import annotations
@@ -46,7 +46,8 @@ MAX_POST_ALERTS = int(os.getenv("MAX_POST_ALERTS", "3"))
 ARTIFACT_DIR = Path(os.getenv("SCAN_ARTIFACT_DIR", "artifacts"))
 OUTCOME_LEDGER_PATH = Path(os.getenv("OUTCOME_LEDGER_PATH", "data/signal_outcomes.json"))
 ENABLE_OUTCOME_TRACKING = os.getenv("ENABLE_OUTCOME_TRACKING", "true").lower() == "true"
-SCANNER_VERSION = "v6.2.1"
+SCANNER_VERSION = "v6.3.0"
+STRICT_OUTCOME_TRACKING = os.getenv("STRICT_OUTCOME_TRACKING", "true").lower() == "true"
 
 FUND_POINTS = {2: 7, 3: 11, 4: 15}
 PRIME_BLOCKING_FLAGS = {
@@ -691,6 +692,7 @@ def main() -> int:
     print(f"🎉 TOTAL: {total_seconds:.0f}s ({total_seconds / 60:.1f} min)")
 
     outcome_summary: Dict[str, Any] = {}
+    outcome_error = ""
     if ENABLE_OUTCOME_TRACKING:
         try:
             outcome_summary = update_ledger(
@@ -704,7 +706,13 @@ def main() -> int:
                 f"{outcome_summary.get('signals_created', 0)} new"
             )
         except Exception as exc:
-            print(f"⚠️ Outcome ledger failed safely: {exc}")
+            outcome_error = str(exc)[:300]
+            print(f"❌ Outcome ledger failed: {outcome_error}")
+            if STRICT_OUTCOME_TRACKING:
+                outcome_summary = {
+                    "error": outcome_error,
+                    "ledger_path": str(OUTCOME_LEDGER_PATH),
+                }
 
     artifact = _save_artifact(
         started,
@@ -727,6 +735,9 @@ def main() -> int:
         total_seconds,
     )
     print("✅ Telegram delivery completed")
+    if outcome_error and STRICT_OUTCOME_TRACKING:
+        print("❌ Scan marked failed because strict outcome tracking is enabled")
+        return 3
     return 0
 
 
