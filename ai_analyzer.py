@@ -1,5 +1,5 @@
 """
-Groq per-setup resilient reviewer for Nifty 500 Scanner v6.2.1 (AI hotfix).
+ Groq per-setup resilient reviewer for Nifty 500 Scanner v6.3.0 (AI hotfix).
 
 The LLM is intentionally not the trading decision engine.  Python computes
 all SMC, price-action, fundamental and R:R facts.  AI may only explain the
@@ -30,6 +30,13 @@ REASON_CODES = {
     "FUNDAMENTAL_BORDERLINE",
     "DATA_COMPLETENESS",
     "STRUCTURE_MIXED",
+    "LOW_LIQUIDITY",
+    "LOW_RELATIVE_VOLUME",
+    "GAP_RISK",
+    "HIGH_VOLATILITY",
+    "COUNTER_MARKET_REGIME",
+    "COUNTER_SECTOR_REGIME",
+    "LOW_PRICE",
     "NONE",
 }
 
@@ -61,6 +68,11 @@ ALLOWED_EVIDENCE_REFS = {
     "confirmation.reclaimed",
     "confirmation.displacement",
     "confirmation.choch_confirmed",
+    "execution_quality.avg_daily_turnover",
+    "execution_quality.relative_volume",
+    "execution_quality.atr_14_pct",
+    "execution_quality.gap_pct",
+    "execution_quality.return_20_pct",
 }
 
 BANNED_PHRASES = {
@@ -113,7 +125,7 @@ def _review_schema(symbols: Sequence[str]) -> Dict[str, Any]:
     return {
         "type": "object",
         "properties": {
-            "review_version": {"type": "string", "enum": ["v6.2.1"]},
+            "review_version": {"type": "string", "enum": ["v6.3.0"]},
             "reviews": {
                 "type": "object",
                 "properties": review_properties,
@@ -189,6 +201,7 @@ def _compact_candidate(stock: Dict[str, Any]) -> Dict[str, Any]:
             "choch_confirmed": conf.get("choch_confirmed"),
         },
         "quality_flags": stock.get("quality_flags", []),
+        "execution_quality": stock.get("execution_quality", {}),
     }
 
 
@@ -200,7 +213,7 @@ def _closed_world_prompt(stocks: Sequence[Dict[str, Any]], breadth: Dict[str, An
     }
     symbols = [str(stock.get("symbol")) for stock in stocks]
     output_shape = {
-        "review_version": "v6.2.1",
+        "review_version": "v6.3.0",
         "reviews": {
             symbol: {
                 "symbol": symbol,
@@ -347,6 +360,16 @@ def _supported_reason(stock: Dict[str, Any], code: str) -> bool:
     if code == "NONE":
         return True
     if code in {"COUNTER_WEEKLY_STRUCTURE", "FAST_APPROACH", "REPEATED_NEAR_TESTS", "STRUCTURE_MIXED"}:
+        return code in flags
+    if code in {
+        "LOW_LIQUIDITY",
+        "LOW_RELATIVE_VOLUME",
+        "GAP_RISK",
+        "HIGH_VOLATILITY",
+        "COUNTER_MARKET_REGIME",
+        "COUNTER_SECTOR_REGIME",
+        "LOW_PRICE",
+    }:
         return code in flags
     if code == "BORDERLINE_RR":
         return float(stock.get("rr1", 999) or 999) < 2.5
