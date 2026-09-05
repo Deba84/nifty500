@@ -26,6 +26,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
+from quality_enhancements import execution_quality
 
 warnings.filterwarnings("ignore")
 
@@ -1222,6 +1223,7 @@ def analyze_stock_from_df(
     df: pd.DataFrame,
     info: Dict[str, Any],
     market_session_date: Optional[Any] = None,
+    market_context: Optional[Dict[str, Any]] = None,
 ) -> Optional[Dict[str, Any]]:
     """Analyze one already-downloaded dataframe. No network calls are made."""
     try:
@@ -1240,10 +1242,34 @@ def analyze_stock_from_df(
         pre = _make_pre_sweep_candidate(df, info, levels, context, data_score, data_flags)
         if post and pre:
             # Confirmation states are more actionable than another pre-sweep pool.
-            return post if post["state_priority"] > pre["state_priority"] else max(
+            candidate = post if post["state_priority"] > pre["state_priority"] else max(
                 [post, pre], key=lambda x: x["technical_score"]
             )
-        return post or pre
+        else:
+            candidate = post or pre
+        if candidate is None:
+            return None
+
+        # Execution quality is a penalty-only layer.  It can reject malformed
+        # data and reduce weak/liquidly-dangerous setups, but never inflate a
+        # technically weak setup into a stronger one.
+        quality, penalty, quality_flags, eligible = execution_quality(
+            df,
+            candidate["direction"],
+            str(info.get("sector", "Unknown")),
+            market_context,
+        )
+        if not eligible:
+            return None
+        candidate["execution_quality"] = quality
+        candidate["score_details"]["execution_quality"] = quality
+        candidate["quality_flags"] = sorted(set(candidate.get("quality_flags", []) + quality_flags))
+        candidate["score_breakdown"]["execution_quality"] = -int(penalty)
+        candidate["technical_score"] = max(0, int(sum(candidate["score_breakdown"].values())))
+        candidate["setup_score"] = candidate["technical_score"]
+        candidate["final_score"] = candidate["technical_score"]
+        candidate["priority"] = candidate["technical_score"]
+        return candidate
     except Exception as exc:
         if os.getenv("SCANNER_DEBUG", "false").lower() == "true":
             print(f"⚠️ analyze {info.get('symbol', '?')}: {exc}")
