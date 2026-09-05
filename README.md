@@ -114,6 +114,9 @@ GROQ_API_KEY
 
 Without `GROQ_API_KEY`, the deterministic scanner still runs without the AI review layer.
 
+The production workflow keeps outcome tracking enabled and treats a ledger
+write failure as a failed scan rather than silently reporting success.
+
 Optional GitHub Repository Variables:
 
 ```text
@@ -159,6 +162,7 @@ The full scan requires Telegram credentials. Groq is optional; without it, deter
 | `MAX_ATR_PCT` | `8.0` |
 | `COUNTER_REGIME_PENALTY` | `5` |
 | `COUNTER_SECTOR_PENALTY` | `3` |
+| `STRICT_OUTCOME_TRACKING` | `true` |
 
 ## Risk rules
 
