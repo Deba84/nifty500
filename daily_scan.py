@@ -28,6 +28,8 @@ from scanner_engine import (
     infer_market_session_date,
     status_from_score,
 )
+from quality_enhancements import build_market_context
+from outcome_tracker import update_ledger
 
 IST = ZoneInfo("Asia/Kolkata")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
@@ -42,6 +44,8 @@ MAX_ALERTS_PER_CATEGORY = int(os.getenv("MAX_ALERTS_PER_CATEGORY", "5"))
 MAX_ARMED_ALERTS = int(os.getenv("MAX_ARMED_ALERTS", "8"))
 MAX_POST_ALERTS = int(os.getenv("MAX_POST_ALERTS", "3"))
 ARTIFACT_DIR = Path(os.getenv("SCAN_ARTIFACT_DIR", "artifacts"))
+OUTCOME_LEDGER_PATH = Path(os.getenv("OUTCOME_LEDGER_PATH", "data/signal_outcomes.json"))
+ENABLE_OUTCOME_TRACKING = os.getenv("ENABLE_OUTCOME_TRACKING", "true").lower() == "true"
 SCANNER_VERSION = "v6.2.1"
 
 FUND_POINTS = {2: 7, 3: 11, 4: 15}
@@ -415,6 +419,7 @@ def format_alert(item: Dict[str, Any], rank: int) -> str:
         f"Liquidity {scores.get('liquidity', 0)}/30 | Approach {scores.get('approach', 0)}/20\n"
         f"D/W Context {scores.get('htf_context', 0)}/15 | Trade {scores.get('trade_geometry', 0)}/15\n"
         f"Fundamental {scores.get('fundamental', 0)}/15 | Data {scores.get('data_integrity', 0)}/5\n"
+        f"Execution quality adjustment: {scores.get('execution_quality', 0)}\n"
         f"📈 Structure: D {_esc(item['trend_daily'])} | W {_esc(item['trend_weekly'])}\n"
     )
 
@@ -467,6 +472,8 @@ def _save_artifact(
     results: Sequence[Dict[str, Any]],
     breadth: Dict[str, Any],
     ai_response: Dict[str, Any],
+    outcome_summary: Optional[Dict[str, Any]] = None,
+    market_context: Optional[Dict[str, Any]] = None,
 ) -> Path:
     ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
     path = ARTIFACT_DIR / f"scan_{started.astimezone(IST).strftime('%Y-%m-%d_%H%M%S')}.json"
@@ -478,8 +485,10 @@ def _save_artifact(
         "downloaded_stocks": stock_count,
         "technical_candidates": raw_candidate_count,
         "breadth": breadth,
+        "market_context": market_context or {},
         "ai_meta": ai_response.get("meta", {}),
         "ai_breadth_commentary_bn": ai_response.get("breadth_commentary_bn", ""),
+        "outcome_summary": outcome_summary or {},
         "results": list(results),
     }
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, default=_json_default), encoding="utf-8")
@@ -599,6 +608,12 @@ def main() -> int:
         return 2
     market_session = infer_market_session_date(stock_dfs)
     print(f"✅ Common market session: {market_session}")
+    market_context = build_market_context(stock_dfs, symbol_map)
+    print(
+        "🌐 Market context: "
+        f"{market_context.get('breadth', {}).get('trend', 'Unknown')} "
+        f"({market_context.get('sample_size', 0)} stocks)"
+    )
 
     # Stage 2: deterministic SMC + price action.
     stage = time.time()
@@ -607,7 +622,12 @@ def main() -> int:
         df = stock_dfs.get(yf_symbol)
         if df is None:
             continue
-        result = analyze_stock_from_df(df, info, market_session_date=market_session)
+        result = analyze_stock_from_df(
+            df,
+            info,
+            market_session_date=market_session,
+            market_context=market_context,
+        )
         if result:
             candidates.append(result)
     raw_candidate_count = len(candidates)
@@ -670,6 +690,22 @@ def main() -> int:
     )
     print(f"🎉 TOTAL: {total_seconds:.0f}s ({total_seconds / 60:.1f} min)")
 
+    outcome_summary: Dict[str, Any] = {}
+    if ENABLE_OUTCOME_TRACKING:
+        try:
+            outcome_summary = update_ledger(
+                OUTCOME_LEDGER_PATH,
+                fundamental_results,
+                stock_dfs,
+                started.date(),
+            )
+            print(
+                f"📚 Outcome ledger: {outcome_summary.get('signals_total', 0)} signals, "
+                f"{outcome_summary.get('signals_created', 0)} new"
+            )
+        except Exception as exc:
+            print(f"⚠️ Outcome ledger failed safely: {exc}")
+
     artifact = _save_artifact(
         started,
         stage_times,
@@ -678,6 +714,8 @@ def main() -> int:
         fundamental_results,
         breadth,
         ai_response,
+        outcome_summary,
+        market_context,
     )
     print(f"🧾 Audit artifact: {artifact}")
     _send_results(
