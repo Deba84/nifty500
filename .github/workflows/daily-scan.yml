@@ -1,4 +1,4 @@
-name: Daily Nifty 500 Scan v6.2.1
+name: Daily Nifty 500 Scan v6.3.0
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   scan:
@@ -44,13 +44,30 @@ jobs:
           MAX_POST_FUND_CANDIDATES: '12'
           MAX_AI_ANALYSIS: '8'
           MAX_POST_AI_ANALYSIS: '3'
+          MIN_AVG_DAILY_TURNOVER: '10000000'
+          MIN_RELATIVE_VOLUME: '0.50'
+          MAX_GAP_PCT: '4.0'
+          MAX_ATR_PCT: '8.0'
         run: python daily_scan.py
+
+      - name: Persist outcome ledger
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/signal_outcomes.json
+          if git diff --cached --quiet; then
+            echo "No new outcome data to commit"
+          else
+            git commit -m "chore: update signal outcome ledger [skip ci]"
+            git push
+          fi
 
       - name: Upload scan audit artifact
         if: always()
         uses: actions/upload-artifact@v6
         with:
-          name: nifty500-v621-scan-${{ github.run_number }}
+          name: nifty500-v630-scan-${{ github.run_number }}
           path: artifacts/*.json
           if-no-files-found: ignore
           retention-days: 30
