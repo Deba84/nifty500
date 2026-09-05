@@ -1,4 +1,4 @@
-# 🌊 Nifty 500 Liquidity + Price Action Scanner v6.2.1
+# 🌊 Nifty 500 Liquidity + Price Action Scanner v6.3.0
 
 Automated Nifty 500 swing-trading scanner for **1D + 1W Smart Money Concepts (SMC)**. It uses raw OHLC structure and liquidity behaviour—no traditional indicators.
 
@@ -13,7 +13,18 @@ Automated Nifty 500 swing-trading scanner for **1D + 1W Smart Money Concepts (SM
 - GitHub Actions use Node 24-compatible action versions
 - Pre-sweep `AT LEVEL`/`VERY CLOSE` setups are sent first as `PRE-SWEEP ARMED`; post-sweep pending alerts are de-emphasized
 
-## What v6.2.1 does
+## v6.3.0 accuracy improvements
+
+- Deterministic market breadth and sector breadth context
+- Average traded value and relative-volume liquidity checks
+- ATR volatility and gap-risk flags
+- Counter-market and counter-sector penalties
+- Penalty-only execution-quality layer; weak technical setups cannot be upgraded
+- Outcome ledger for 5, 10 and 20-bar forward evaluation
+- Walk-forward evaluator for selected symbols
+- Same-candle stop/target collisions are recorded as `AMBIGUOUS_SAME_BAR`
+
+## What v6.3.0 does
 
 ### Pre-sweep watch engine
 
@@ -43,6 +54,26 @@ Liquidity sweep
 - AI can only apply a validated caution/downgrade; it cannot upgrade a setup or change trade levels
 - AI failure never stops the deterministic scan
 
+### Deterministic execution-quality layer
+
+The quality layer is a penalty-only ranking guard. It uses:
+
+- 20-day average traded value and relative volume
+- ATR-based volatility and gap-risk flags
+- Cross-sectional Nifty breadth and sector breadth
+- Invalid-data and low-price checks
+
+Defaults can be changed with environment variables:
+
+| Environment variable | Default |
+|---|---:|
+| `MIN_AVG_DAILY_TURNOVER` | `10000000` |
+| `MIN_RELATIVE_VOLUME` | `0.50` |
+| `MAX_GAP_PCT` | `4.0` |
+| `MAX_ATR_PCT` | `8.0` |
+| `COUNTER_REGIME_PENALTY` | `5` |
+| `COUNTER_SECTOR_PENALTY` | `3` |
+
 ## Safe status labels
 
 | Status | Meaning |
@@ -64,16 +95,27 @@ Liquidity sweep
 5. One comparative Groq review for maximum 8 candidates
 6. Telegram alerts
 7. JSON audit artifact uploaded by GitHub Actions
+8. Signal outcome ledger update
 
 ## GitHub Secrets
 
-Required:
+Required for Telegram alerts and the full scan:
 
 ```text
 TELEGRAM_BOT_TOKEN
 TELEGRAM_CHAT_ID
+```
+
+Optional:
+
+```text
 GROQ_API_KEY
 ```
+
+Without `GROQ_API_KEY`, the deterministic scanner still runs without the AI review layer.
+
+The production workflow keeps outcome tracking enabled and treats a ledger
+write failure as a failed scan rather than silently reporting success.
 
 Optional GitHub Repository Variables:
 
@@ -114,6 +156,13 @@ The full scan requires Telegram credentials. Groq is optional; without it, deter
 | `MAX_POST_AI_ANALYSIS` | `3` |
 | `AI_CAUTION_PENALTY` | `5` |
 | `CONFIRMATION_LOOKBACK` | `6` bars |
+| `MIN_AVG_DAILY_TURNOVER` | `10000000` |
+| `MIN_RELATIVE_VOLUME` | `0.50` |
+| `MAX_GAP_PCT` | `4.0` |
+| `MAX_ATR_PCT` | `8.0` |
+| `COUNTER_REGIME_PENALTY` | `5` |
+| `COUNTER_SECTOR_PENALTY` | `3` |
+| `STRICT_OUTCOME_TRACKING` | `true` |
 
 ## Risk rules
 
@@ -135,15 +184,31 @@ artifacts/scan_YYYY-MM-DD_HHMMSS.json
 
 GitHub Actions uploads it for 30 days. It includes stage timings, component scores, validated AI review and final rankings—but no secrets.
 
+## Outcome tracking and research
+
+Each run updates `data/signal_outcomes.json`. The ledger evaluates completed daily candles at 5, 10 and 20 bars and records TP1, SL, open-at-horizon or `AMBIGUOUS_SAME_BAR` when both stop and target occur inside one candle.
+
+Use the ledger and walk-forward evaluator to inspect behaviour before changing score thresholds:
+
+```bash
+python backtest.py --symbol RELIANCE.NS --symbol HDFCBANK.NS --period 5y
+```
+
+Do not treat the resulting statistics as a guarantee of future performance.
+
 ## Files
 
 ```text
-scanner_engine.py       deterministic liquidity + PA state machine
-daily_scan.py           orchestration, fundamentals, Telegram, artifacts
+scanner_engine.py        deterministic liquidity + PA state machine
+daily_scan.py            orchestration, fundamentals, Telegram, artifacts
 ai_analyzer.py           strict closed-world Groq reviewer
-fundamental_analyzer.py Screener.in parser and 0–4 gate
+quality_enhancements.py  market/sector breadth and execution-quality penalties
+outcome_tracker.py       signal ledger and forward-outcome evaluation
+backtest.py              selected-symbol walk-forward evaluator
+fundamental_analyzer.py  Screener.in parser and 0–4 gate
 nifty500_list.py         Nifty 500 universe
- tests/                  deterministic regression tests
+data/signal_outcomes.json persisted signal outcome ledger
+tests/                   deterministic regression tests
 ```
 
 ## Disclaimer
