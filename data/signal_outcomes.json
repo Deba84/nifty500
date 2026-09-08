@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-07",
+  "updated_at": "2026-09-08",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -30,7 +30,23 @@
       "sl": 133.24,
       "tp1": 141.15,
       "tp2": 147.16,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "MGL|2026-09-04|RECLAIMED_WAIT_CHOCH|1067.33",
@@ -106,7 +122,23 @@
       "sl": 9409.05,
       "tp1": 8457.5,
       "tp2": 8105.0,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "HUDCO|2026-09-04|RECLAIMED_WAIT_CHOCH|177.67",
@@ -544,6 +576,217 @@
       "sl": 31071.83,
       "tp1": 33760.0,
       "tp2": 36581.26,
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-08",
+          "bars_observed": 1
+        }
+      }
+    },
+    {
+      "signal_id": "PFC|2026-09-08|RECLAIMED_WAIT_CHOCH|356.98",
+      "symbol": "PFC",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 356.98,
+      "sl": 363.07,
+      "tp1": 336.3,
+      "tp2": 317.66,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ALKEM|2026-09-08|RECLAIMED_WAIT_CHOCH|5163.58",
+      "symbol": "ALKEM",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-08",
+      "direction": "LONG",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 5163.58,
+      "sl": 5075.98,
+      "tp1": 5378.5,
+      "tp2": 5875.53,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "EMCURE|2026-09-08|RECLAIMED_WAIT_CHOCH|1936.35",
+      "symbol": "EMCURE",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 1936.35,
+      "sl": 1969.33,
+      "tp1": 1826.55,
+      "tp2": 1747.6,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "UTIAMC|2026-09-08|RECLAIMED_WAIT_CHOCH|876.39",
+      "symbol": "UTIAMC",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-08",
+      "direction": "LONG",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 876.39,
+      "sl": 861.52,
+      "tp1": 924.9,
+      "tp2": 995.59,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "CEMPRO|2026-09-08|RECLAIMED_WAIT_CHOCH|1312.07",
+      "symbol": "CEMPRO",
+      "sector": "Construction",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 1312.07,
+      "sl": 1334.42,
+      "tp1": 1206.2,
+      "tp2": 1153.8,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "GLAND|2026-09-08|RECLAIMED_WAIT_CHOCH|2963.06",
+      "symbol": "GLAND",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 72,
+      "entry_ref": 2963.06,
+      "sl": 3013.53,
+      "tp1": 2803.0,
+      "tp2": 2475.4,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "COALINDIA|2026-09-08|PRE_SWEEP|424.51",
+      "symbol": "COALINDIA",
+      "sector": "Oil Gas & Consumable Fuels",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 84,
+      "entry_ref": 424.51,
+      "sl": 431.74,
+      "tp1": 394.41,
+      "tp2": 355.18,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "JSL|2026-09-08|PRE_SWEEP|740.02",
+      "symbol": "JSL",
+      "sector": "Metals & Mining",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 83,
+      "entry_ref": 740.02,
+      "sl": 752.62,
+      "tp1": 696.05,
+      "tp2": 671.33,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "CGPOWER|2026-09-08|PRE_SWEEP|914.17",
+      "symbol": "CGPOWER",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 79,
+      "entry_ref": 914.17,
+      "sl": 929.74,
+      "tp1": 870.0,
+      "tp2": 826.1,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "JSWDULUX|2026-09-08|PRE_SWEEP|3207.57",
+      "symbol": "JSWDULUX",
+      "sector": "Consumer Durables",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 77,
+      "entry_ref": 3207.57,
+      "sl": 3262.21,
+      "tp1": 3066.7,
+      "tp2": 2938.8,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "LAURUSLABS|2026-09-08|PRE_SWEEP|1948.1",
+      "symbol": "LAURUSLABS",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 76,
+      "entry_ref": 1948.1,
+      "sl": 1981.28,
+      "tp1": 1811.7,
+      "tp2": 1769.4,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "NAVINFLUOR|2026-09-08|PRE_SWEEP|8757.95",
+      "symbol": "NAVINFLUOR",
+      "sector": "Chemicals",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 8757.95,
+      "sl": 8907.13,
+      "tp1": 8275.5,
+      "tp2": 8090.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ELGIEQUIP|2026-09-08|PRE_SWEEP|644.21",
+      "symbol": "ELGIEQUIP",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-08",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 70,
+      "entry_ref": 644.21,
+      "sl": 655.18,
+      "tp1": 613.9,
+      "tp2": 569.45,
       "outcomes": {}
     }
   ]
