@@ -361,23 +361,27 @@ def _count_near_test_episodes(df: pd.DataFrame, level: Dict[str, Any], end_idx: 
         return 0
     target = float(level["target_price"])
     touch_set = set(level.get("touch_indices", []))
-    near_indices: List[int] = []
-    for i in range(start, end + 1):
-        if any(abs(i - t) <= 1 for t in touch_set):
-            continue
-        if level["side"] == "BSL":
-            distance = max(0.0, (target - float(df["High"].iloc[i])) / target * 100)
-        else:
-            distance = max(0.0, (float(df["Low"].iloc[i]) - target) / target * 100)
-        if distance <= NEAR_TEST_PCT:
-            near_indices.append(i)
-    if not near_indices:
+
+    indices = np.arange(start, end + 1)
+    if not touch_set:
+        mask = np.ones(len(indices), dtype=bool)
+    else:
+        touches = np.array(list(touch_set), dtype=int)
+        diffs = np.abs(indices[:, None] - touches[None, :])
+        mask = ~np.any(diffs <= 1, axis=1)
+
+    # Vectorized NumPy distance calculations avoid slow per-row pandas .iloc indexing
+    if level["side"] == "BSL":
+        vals = df["High"].to_numpy(dtype=float)[start : end + 1]
+        dist = np.maximum(0.0, (target - vals) / target * 100)
+    else:
+        vals = df["Low"].to_numpy(dtype=float)[start : end + 1]
+        dist = np.maximum(0.0, (vals - target) / target * 100)
+
+    valid_near_indices = indices[mask & (dist <= NEAR_TEST_PCT)]
+    if len(valid_near_indices) == 0:
         return 0
-    episodes = 1
-    for previous, current in zip(near_indices, near_indices[1:]):
-        if current - previous > 2:
-            episodes += 1
-    return episodes
+    return 1 + int(np.sum(np.diff(valid_near_indices) > 2))
 
 
 def build_liquidity_levels(df: pd.DataFrame, lookback_bars: int = 180) -> List[Dict[str, Any]]:
