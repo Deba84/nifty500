@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-08",
+  "updated_at": "2026-09-09",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -15,7 +15,23 @@
       "sl": 773.43,
       "tp1": 714.01,
       "tp2": 606.32,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "IOC|2026-09-04|RECLAIMED_WAIT_CHOCH|135.54",
@@ -214,7 +230,23 @@
       "sl": 1400.7,
       "tp1": 1261.0,
       "tp2": 1038.81,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 3
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 3
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 3
+        }
+      }
     },
     {
       "signal_id": "ELGIEQUIP|2026-09-04|PRE_SWEEP|644.11",
@@ -259,7 +291,23 @@
       "sl": 127606.75,
       "tp1": 135800.0,
       "tp2": 138747.83,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 3
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 3
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 3
+        }
+      }
     },
     {
       "signal_id": "PNB|2026-09-04|PRE_SWEEP|117.96",
@@ -396,7 +444,23 @@
       "sl": 1400.7,
       "tp1": 1294.0,
       "tp2": 1261.0,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "ELGIEQUIP|2026-09-07|RECLAIMED_WAIT_CHOCH|644.11",
@@ -471,7 +535,23 @@
       "sl": 429.49,
       "tp1": 394.41,
       "tp2": 355.18,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "CPPLUS|2026-09-07|PRE_SWEEP|3790.3",
@@ -486,7 +566,23 @@
       "sl": 3854.87,
       "tp1": 3460.2,
       "tp2": 3251.0,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "KEC|2026-09-07|PRE_SWEEP|400.35",
@@ -501,7 +597,23 @@
       "sl": 393.56,
       "tp1": 425.8,
       "tp2": 482.18,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "MARUTI|2026-09-07|PRE_SWEEP|12598.87",
@@ -546,7 +658,23 @@
       "sl": 1826.8,
       "tp1": 1712.1,
       "tp2": 1519.5,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "NLCINDIA|2026-09-07|PRE_SWEEP|266.58",
@@ -561,7 +689,23 @@
       "sl": 262.06,
       "tp1": 281.35,
       "tp2": 307.7,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-09",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "POWERINDIA|2026-09-07|PRE_SWEEP|31608.09",
@@ -682,7 +826,23 @@
       "sl": 3013.53,
       "tp1": 2803.0,
       "tp2": 2475.4,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "COALINDIA|2026-09-08|PRE_SWEEP|424.51",
@@ -697,7 +857,23 @@
       "sl": 431.74,
       "tp1": 394.41,
       "tp2": 355.18,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "JSL|2026-09-08|PRE_SWEEP|740.02",
@@ -712,7 +888,23 @@
       "sl": 752.62,
       "tp1": 696.05,
       "tp2": 671.33,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "CGPOWER|2026-09-08|PRE_SWEEP|914.17",
@@ -727,7 +919,23 @@
       "sl": 929.74,
       "tp1": 870.0,
       "tp2": 826.1,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "JSWDULUX|2026-09-08|PRE_SWEEP|3207.57",
@@ -772,7 +980,23 @@
       "sl": 8907.13,
       "tp1": 8275.5,
       "tp2": 8090.0,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-09",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "ELGIEQUIP|2026-09-08|PRE_SWEEP|644.21",
@@ -787,6 +1011,216 @@
       "sl": 655.18,
       "tp1": 613.9,
       "tp2": 569.45,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "EMCURE|2026-09-09|RECLAIMED_WAIT_CHOCH|1936.35",
+      "symbol": "EMCURE",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WATCH",
+      "score": 77,
+      "entry_ref": 1936.35,
+      "sl": 1969.33,
+      "tp1": 1826.55,
+      "tp2": 1747.6,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BPCL|2026-09-09|RECLAIMED_WAIT_CHOCH|300.0",
+      "symbol": "BPCL",
+      "sector": "Oil Gas & Consumable Fuels",
+      "signal_date": "2026-09-09",
+      "direction": "LONG",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 300.0,
+      "sl": 294.91,
+      "tp1": 324.05,
+      "tp2": 389.9,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "CPPLUS|2026-09-09|RECLAIMED_WAIT_CHOCH|3790.3",
+      "symbol": "CPPLUS",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 3790.3,
+      "sl": 3854.87,
+      "tp1": 3460.2,
+      "tp2": 3251.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "LICHSGFIN|2026-09-09|RECLAIMED_WAIT_CHOCH|558.4",
+      "symbol": "LICHSGFIN",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 558.4,
+      "sl": 567.91,
+      "tp1": 525.25,
+      "tp2": 485.45,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "GLAND|2026-09-09|RECLAIMED_WAIT_CHOCH|2963.06",
+      "symbol": "GLAND",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 2963.06,
+      "sl": 3013.53,
+      "tp1": 2803.0,
+      "tp2": 2475.4,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "APTUS|2026-09-09|PRE_SWEEP|261.44",
+      "symbol": "APTUS",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 83,
+      "entry_ref": 261.44,
+      "sl": 265.89,
+      "tp1": 246.45,
+      "tp2": 191.24,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "HINDZINC|2026-09-09|PRE_SWEEP|607.73",
+      "symbol": "HINDZINC",
+      "sector": "Metals & Mining",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 81,
+      "entry_ref": 607.73,
+      "sl": 618.08,
+      "tp1": 581.3,
+      "tp2": 548.8,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BHARTIARTL|2026-09-09|PRE_SWEEP|1813.94",
+      "symbol": "BHARTIARTL",
+      "sector": "Telecommunication",
+      "signal_date": "2026-09-09",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 80,
+      "entry_ref": 1813.94,
+      "sl": 1783.16,
+      "tp1": 1895.5,
+      "tp2": 2031.43,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "MCX|2026-09-09|PRE_SWEEP|3393.2",
+      "symbol": "MCX",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 80,
+      "entry_ref": 3393.2,
+      "sl": 3451.0,
+      "tp1": 3165.6,
+      "tp2": 2559.23,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BLUEDART|2026-09-09|PRE_SWEEP|4912.31",
+      "symbol": "BLUEDART",
+      "sector": "Services",
+      "signal_date": "2026-09-09",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 79,
+      "entry_ref": 4912.31,
+      "sl": 4828.96,
+      "tp1": 5159.5,
+      "tp2": 5745.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "JSWDULUX|2026-09-09|PRE_SWEEP|3207.57",
+      "symbol": "JSWDULUX",
+      "sector": "Consumer Durables",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 77,
+      "entry_ref": 3207.57,
+      "sl": 3262.21,
+      "tp1": 3066.7,
+      "tp2": 2938.8,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "CUMMINSIND|2026-09-09|PRE_SWEEP|5168.64",
+      "symbol": "CUMMINSIND",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 5168.64,
+      "sl": 5256.68,
+      "tp1": 4357.85,
+      "tp2": 3833.72,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "CANFINHOME|2026-09-09|PRE_SWEEP|784.57",
+      "symbol": "CANFINHOME",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-09",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 72,
+      "entry_ref": 784.57,
+      "sl": 771.25,
+      "tp1": 815.0,
+      "tp2": 852.35,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "APOLLOHOSP|2026-09-09|PRE_SWEEP|8980.53",
+      "symbol": "APOLLOHOSP",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-09",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 8980.53,
+      "sl": 9133.5,
+      "tp1": 8640.0,
+      "tp2": 7805.41,
       "outcomes": {}
     }
   ]
