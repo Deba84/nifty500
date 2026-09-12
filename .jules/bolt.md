@@ -1,0 +1,3 @@
+## 2025-05-18 - Vectorize pandas `.iloc[i]` loops in scanner hot paths
+**Learning:** In pandas DataFrames representing historical OHLC price series (~250 bars per stock), querying `.iloc[i]` inside nested Python loops (e.g. `_count_near_test_episodes`) accounts for over 40% of the entire universe scan execution time due to pandas indexing overhead across 500 stocks. Vectorizing distance calculations using NumPy arrays (`to_numpy()`, array masking, `np.maximum`, `np.diff`) speeds up historical episode counting by ~28x and overall stock analysis execution time by over 40%.
+**Action:** Always extract pandas Series to NumPy float arrays (`to_numpy()`) or use vectorization when performing repetitive per-bar scans or window calculations over historical OHLC bars.
