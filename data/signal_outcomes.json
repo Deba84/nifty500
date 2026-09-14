@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-11",
+  "updated_at": "2026-09-14",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -2089,6 +2089,81 @@
       "sl": 141.4,
       "tp1": 165.86,
       "tp2": 171.36,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "MARICO|2026-09-11|PRE_SWEEP|792.81",
+      "symbol": "MARICO",
+      "sector": "Fast Moving Consumer Goods",
+      "signal_date": "2026-09-11",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 75,
+      "entry_ref": 792.81,
+      "sl": 779.36,
+      "tp1": 840.05,
+      "tp2": 869.03,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BAYERCROP|2026-09-11|PRE_SWEEP|3934.45",
+      "symbol": "BAYERCROP",
+      "sector": "Chemicals",
+      "signal_date": "2026-09-11",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 73,
+      "entry_ref": 3934.45,
+      "sl": 3867.7,
+      "tp1": 4074.4,
+      "tp2": 4338.9,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BERGEPAINT|2026-09-11|PRE_SWEEP|453.24",
+      "symbol": "BERGEPAINT",
+      "sector": "Consumer Durables",
+      "signal_date": "2026-09-11",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 453.24,
+      "sl": 445.55,
+      "tp1": 505.0,
+      "tp2": 565.9,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "PNB|2026-09-11|PRE_SWEEP|118.01",
+      "symbol": "PNB",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-11",
+      "direction": "SHORT",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 118.01,
+      "sl": 120.02,
+      "tp1": 113.16,
+      "tp2": 100.45,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ABLBL|2026-09-11|PRE_SWEEP|82.77",
+      "symbol": "ABLBL",
+      "sector": "Consumer Services",
+      "signal_date": "2026-09-11",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 70,
+      "entry_ref": 82.77,
+      "sl": 81.36,
+      "tp1": 95.66,
+      "tp2": 99.51,
       "outcomes": {}
     }
   ]
