@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-14",
+  "updated_at": "2026-09-15",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -77,7 +77,14 @@
       "sl": 1049.22,
       "tp1": 1143.9,
       "tp2": 1232.04,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "OPEN_AT_HORIZON",
+          "close": 1071.7,
+          "r_multiple": 0.2413,
+          "bars_observed": 5
+        }
+      }
     },
     {
       "signal_id": "MCX|2026-09-04|RECLAIMED_WAIT_CHOCH|3347.07",
@@ -291,7 +298,14 @@
       "sl": 655.08,
       "tp1": 596.0,
       "tp2": 569.45,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "OPEN_AT_HORIZON",
+          "close": 612.05,
+          "r_multiple": 2.9225,
+          "bars_observed": 5
+        }
+      }
     },
     {
       "signal_id": "MARUTI|2026-09-04|PRE_SWEEP|12598.87",
@@ -483,7 +497,14 @@
       "sl": 3262.21,
       "tp1": 3066.7,
       "tp2": 2938.8,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "OPEN_AT_HORIZON",
+          "close": 3133.8,
+          "r_multiple": 1.3501,
+          "bars_observed": 5
+        }
+      }
     },
     {
       "signal_id": "PFC|2026-09-07|RECLAIMED_WAIT_CHOCH|356.98",
@@ -498,7 +519,14 @@
       "sl": 363.07,
       "tp1": 336.3,
       "tp2": 317.66,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "OPEN_AT_HORIZON",
+          "close": 344.0,
+          "r_multiple": 2.1314,
+          "bars_observed": 5
+        }
+      }
     },
     {
       "signal_id": "GESHIP|2026-09-07|RECLAIMED_WAIT_CHOCH|1377.24",
@@ -606,7 +634,14 @@
       "sl": 861.52,
       "tp1": 924.9,
       "tp2": 995.59,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "OPEN_AT_HORIZON",
+          "close": 911.1,
+          "r_multiple": 2.3342,
+          "bars_observed": 5
+        }
+      }
     },
     {
       "signal_id": "LICHSGFIN|2026-09-07|RECLAIMED_WAIT_CHOCH|558.4",
@@ -776,7 +811,14 @@
       "sl": 180.62,
       "tp1": 169.52,
       "tp2": 160.71,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "OPEN_AT_HORIZON",
+          "close": 170.88,
+          "r_multiple": 2.2252,
+          "bars_observed": 5
+        }
+      }
     },
     {
       "signal_id": "IKS|2026-09-07|PRE_SWEEP|1796.2",
@@ -976,7 +1018,23 @@
       "sl": 1334.42,
       "tp1": 1206.2,
       "tp2": 1153.8,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 4
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 4
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 4
+        }
+      }
     },
     {
       "signal_id": "GLAND|2026-09-08|RECLAIMED_WAIT_CHOCH|2963.06",
@@ -1439,7 +1497,23 @@
       "sl": 3451.0,
       "tp1": 3165.6,
       "tp2": 2559.23,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 3
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 3
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 3
+        }
+      }
     },
     {
       "signal_id": "BLUEDART|2026-09-09|PRE_SWEEP|4912.31",
@@ -1561,7 +1635,23 @@
       "sl": 4925.98,
       "tp1": 5595.0,
       "tp2": 5859.4,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "APOLLOHOSP|2026-09-10|RECLAIMED_WAIT_CHOCH|8980.53",
@@ -1637,7 +1727,23 @@
       "sl": 929.74,
       "tp1": 870.0,
       "tp2": 826.1,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "NAVINFLUOR|2026-09-10|RECLAIMED_WAIT_CHOCH|8757.95",
@@ -1652,7 +1758,23 @@
       "sl": 8907.13,
       "tp1": 8275.5,
       "tp2": 8090.0,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 2
+        }
+      }
     },
     {
       "signal_id": "LICHSGFIN|2026-09-10|RECLAIMED_WAIT_CHOCH|558.4",
@@ -1819,7 +1941,23 @@
       "sl": 153.97,
       "tp1": 138.24,
       "tp2": 132.06,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "TP1",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "CUMMINSIND|2026-09-11|CHOCH_WAIT_DISPLACEMENT|5168.64",
@@ -2029,7 +2167,23 @@
       "sl": 259.35,
       "tp1": 307.7,
       "tp2": 329.1,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "GILLETTE|2026-09-11|PRE_SWEEP|7262.5",
@@ -2074,7 +2228,23 @@
       "sl": 536.97,
       "tp1": 586.4,
       "tp2": 599.85,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "CESC|2026-09-11|PRE_SWEEP|143.84",
@@ -2089,7 +2259,23 @@
       "sl": 141.4,
       "tp1": 165.86,
       "tp2": 171.36,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "MARICO|2026-09-11|PRE_SWEEP|792.81",
@@ -2134,7 +2320,23 @@
       "sl": 445.55,
       "tp1": 505.0,
       "tp2": 565.9,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-09-15",
+          "bars_observed": 1
+        }
+      }
     },
     {
       "signal_id": "PNB|2026-09-11|PRE_SWEEP|118.01",
@@ -2164,6 +2366,216 @@
       "sl": 81.36,
       "tp1": 95.66,
       "tp2": 99.51,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "EMMVEE|2026-09-15|RECLAIMED_WAIT_CHOCH|347.5",
+      "symbol": "EMMVEE",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WATCH",
+      "score": 79,
+      "entry_ref": 347.5,
+      "sl": 353.42,
+      "tp1": 320.25,
+      "tp2": 313.45,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "USHAMART|2026-09-15|RECLAIMED_WAIT_CHOCH|519.84",
+      "symbol": "USHAMART",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WATCH",
+      "score": 79,
+      "entry_ref": 519.84,
+      "sl": 528.7,
+      "tp1": 477.8,
+      "tp2": 456.57,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "LICHSGFIN|2026-09-15|RECLAIMED_WAIT_CHOCH|558.4",
+      "symbol": "LICHSGFIN",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 558.4,
+      "sl": 567.91,
+      "tp1": 485.45,
+      "tp2": 449.87,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "IGIL|2026-09-15|RECLAIMED_WAIT_CHOCH|308.79",
+      "symbol": "IGIL",
+      "sector": "Services",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 74,
+      "entry_ref": 308.79,
+      "sl": 303.55,
+      "tp1": 324.05,
+      "tp2": 368.62,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ANGELONE|2026-09-15|RECLAIMED_WAIT_CHOCH|306.79",
+      "symbol": "ANGELONE",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 73,
+      "entry_ref": 306.79,
+      "sl": 312.01,
+      "tp1": 275.25,
+      "tp2": 206.12,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "APOLLOHOSP|2026-09-15|RECLAIMED_WAIT_CHOCH|8921.71",
+      "symbol": "APOLLOHOSP",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 8921.71,
+      "sl": 9073.69,
+      "tp1": 8497.61,
+      "tp2": 7805.41,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "GROWW|2026-09-15|RECLAIMED_WAIT_CHOCH|200.51",
+      "symbol": "GROWW",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 200.51,
+      "sl": 203.92,
+      "tp1": 191.01,
+      "tp2": 185.35,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ABDL|2026-09-15|RECLAIMED_WAIT_CHOCH|636.72",
+      "symbol": "ABDL",
+      "sector": "Fast Moving Consumer Goods",
+      "signal_date": "2026-09-15",
+      "direction": "SHORT",
+      "signal_state": "RECLAIMED_WAIT_CHOCH",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 636.72,
+      "sl": 647.57,
+      "tp1": 586.55,
+      "tp2": 500.81,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BPCL|2026-09-15|PRE_SWEEP|296.59",
+      "symbol": "BPCL",
+      "sector": "Oil Gas & Consumable Fuels",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 81,
+      "entry_ref": 296.59,
+      "sl": 291.56,
+      "tp1": 326.35,
+      "tp2": 389.9,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "POWERGRID|2026-09-15|PRE_SWEEP|262.22",
+      "symbol": "POWERGRID",
+      "sector": "Power",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 78,
+      "entry_ref": 262.22,
+      "sl": 257.77,
+      "tp1": 274.05,
+      "tp2": 294.1,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "GAIL|2026-09-15|PRE_SWEEP|169.86",
+      "symbol": "GAIL",
+      "sector": "Oil Gas & Consumable Fuels",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 78,
+      "entry_ref": 169.86,
+      "sl": 166.97,
+      "tp1": 177.3,
+      "tp2": 181.85,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "TORNTPHARM|2026-09-15|PRE_SWEEP|4823.63",
+      "symbol": "TORNTPHARM",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 76,
+      "entry_ref": 4823.63,
+      "sl": 4741.79,
+      "tp1": 5000.0,
+      "tp2": 5250.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "GICRE|2026-09-15|PRE_SWEEP|334.47",
+      "symbol": "GICRE",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 75,
+      "entry_ref": 334.47,
+      "sl": 328.79,
+      "tp1": 353.75,
+      "tp2": 362.4,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ENRIN|2026-09-15|PRE_SWEEP|3019.63",
+      "symbol": "ENRIN",
+      "sector": "Capital Goods",
+      "signal_date": "2026-09-15",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 3019.63,
+      "sl": 2968.4,
+      "tp1": 3249.8,
+      "tp2": 3735.0,
       "outcomes": {}
     }
   ]
