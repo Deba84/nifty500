@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-25",
+  "updated_at": "2026-09-29",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -6155,6 +6155,51 @@
       "sl": 2444.77,
       "tp1": 2637.8,
       "tp2": 2989.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "GICRE|2026-09-25|PRE_SWEEP|334.47",
+      "symbol": "GICRE",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-25",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 77,
+      "entry_ref": 334.47,
+      "sl": 328.79,
+      "tp1": 353.25,
+      "tp2": 362.45,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BLUEDART|2026-09-25|PRE_SWEEP|4725.53",
+      "symbol": "BLUEDART",
+      "sector": "Services",
+      "signal_date": "2026-09-25",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 73,
+      "entry_ref": 4725.53,
+      "sl": 4645.36,
+      "tp1": 4889.4,
+      "tp2": 5159.5,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "PFC|2026-09-25|PRE_SWEEP|336.97",
+      "symbol": "PFC",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-25",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 336.97,
+      "sl": 331.26,
+      "tp1": 353.45,
+      "tp2": 424.65,
       "outcomes": {}
     }
   ]
