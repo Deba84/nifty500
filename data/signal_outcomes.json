@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-01",
+  "updated_at": "2026-10-02",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -8241,6 +8241,66 @@
       "sl": 6757.1,
       "tp1": 7145.0,
       "tp2": 7564.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "ENDURANCE|2026-10-01|PRE_SWEEP|2587.16",
+      "symbol": "ENDURANCE",
+      "sector": "Automobile and Auto Components",
+      "signal_date": "2026-10-01",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 70,
+      "entry_ref": 2587.16,
+      "sl": 2543.27,
+      "tp1": 2780.0,
+      "tp2": 2905.8,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "TIMKEN|2026-10-01|PRE_SWEEP|3071.13",
+      "symbol": "TIMKEN",
+      "sector": "Capital Goods",
+      "signal_date": "2026-10-01",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 68,
+      "entry_ref": 3071.13,
+      "sl": 3019.03,
+      "tp1": 3324.7,
+      "tp2": 3921.83,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "UNOMINDA|2026-10-01|PRE_SWEEP|1103.3",
+      "symbol": "UNOMINDA",
+      "sector": "Automobile and Auto Components",
+      "signal_date": "2026-10-01",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 67,
+      "entry_ref": 1103.3,
+      "sl": 1084.58,
+      "tp1": 1259.9,
+      "tp2": 1288.0,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "HAL|2026-10-01|PRE_SWEEP|4558.4",
+      "symbol": "HAL",
+      "sector": "Capital Goods",
+      "signal_date": "2026-10-01",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 67,
+      "entry_ref": 4558.4,
+      "sl": 4481.06,
+      "tp1": 4888.9,
+      "tp2": 5097.4,
       "outcomes": {}
     }
   ]
