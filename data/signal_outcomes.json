@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-02",
+  "updated_at": "2026-10-06",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -8301,6 +8301,36 @@
       "sl": 4481.06,
       "tp1": 4888.9,
       "tp2": 5097.4,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "BSOFT|2026-10-01|PRE_SWEEP|266.8",
+      "symbol": "BSOFT",
+      "sector": "Information Technology",
+      "signal_date": "2026-10-01",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 71,
+      "entry_ref": 266.8,
+      "sl": 262.27,
+      "tp1": 284.9,
+      "tp2": 302.85,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "3MINDIA|2026-10-01|PRE_SWEEP|30628.45",
+      "symbol": "3MINDIA",
+      "sector": "Diversified",
+      "signal_date": "2026-10-01",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WAIT",
+      "score": 70,
+      "entry_ref": 30628.45,
+      "sl": 30108.8,
+      "tp1": 35095.0,
+      "tp2": 37300.0,
       "outcomes": {}
     }
   ]
