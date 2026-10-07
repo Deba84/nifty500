@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import patch
 
-from daily_scan import _balanced_select, _entry_line, apply_rule_caps, calculate_breadth
+from daily_scan import _balanced_select, _entry_line, _send_results, apply_rule_caps, calculate_breadth
 
 
 class BalancedBudgetTests(unittest.TestCase):
@@ -76,6 +77,57 @@ class RuleCapTests(unittest.TestCase):
         result = apply_rule_caps(item)
         self.assertEqual(result["rule_score"], 84)
         self.assertEqual(result["base_status"], "WATCH")
+
+
+class TelegramDeliveryTests(unittest.TestCase):
+    def test_no_setup_alert_failure_is_reported(self):
+        with patch("daily_scan.send_telegram", return_value=False) as send:
+            delivered = _send_results([], {}, {}, downloaded=500, total_symbols=500, total_seconds=10)
+        self.assertFalse(delivered)
+        send.assert_called_once()
+
+    def test_any_failed_message_marks_delivery_failed_and_continues(self):
+        item = {
+            "final_status": "WATCH",
+            "signal_state": "PRE_SWEEP",
+            "stage": "CLOSE",
+            "direction": "LONG",
+            "final_score": 75,
+            "distance_pct": 0.7,
+        }
+        with patch("daily_scan.send_telegram", side_effect=[True, False, True, True, True]) as send, \
+                patch("daily_scan.format_alert", return_value="candidate alert"):
+            delivered = _send_results(
+                [item],
+                {},
+                {},
+                downloaded=500,
+                total_symbols=500,
+                total_seconds=10,
+            )
+        self.assertFalse(delivered)
+        self.assertEqual(send.call_count, 5)
+
+    def test_all_successful_messages_report_delivery_success(self):
+        item = {
+            "final_status": "WATCH",
+            "signal_state": "PRE_SWEEP",
+            "stage": "CLOSE",
+            "direction": "LONG",
+            "final_score": 75,
+            "distance_pct": 0.7,
+        }
+        with patch("daily_scan.send_telegram", return_value=True), \
+                patch("daily_scan.format_alert", return_value="candidate alert"):
+            delivered = _send_results(
+                [item],
+                {},
+                {},
+                downloaded=500,
+                total_symbols=500,
+                total_seconds=10,
+            )
+        self.assertTrue(delivered)
 
 
 if __name__ == "__main__":
