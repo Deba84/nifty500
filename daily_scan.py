@@ -503,16 +503,22 @@ def _send_results(
     downloaded: int,
     total_symbols: int,
     total_seconds: float,
-) -> None:
+) -> bool:
     visible = [x for x in results if x.get("final_status") != "SKIP"]
     if not visible:
-        send_telegram(
+        return send_telegram(
             f"⚠️ <b>NO VALID {SCANNER_VERSION} SETUPS TODAY</b>\n\n"
             f"Scanned {downloaded}/{total_symbols} stocks.\n"
             f"Hard rules: genuine untapped + moving approach + Fund ≥2 + TP1 R:R ≥2.\n"
             f"⏱️ Duration: {total_seconds:.0f}s"
         )
-        return
+
+    delivery_ok = True
+
+    def send_and_track(text: str) -> None:
+        nonlocal delivery_ok
+        sent = send_telegram(text)
+        delivery_ok = sent and delivery_ok
 
     trigger = [x for x in visible if x["signal_state"] == "TRIGGER_READY"]
     confirming = [x for x in visible if x["signal_state"] not in {"PRE_SWEEP", "TRIGGER_READY"}]
@@ -541,7 +547,7 @@ def _send_results(
         f"📈 Scanned: {downloaded}/{total_symbols}\n"
         "━━━━━━━━━━━━━━━━━━━━━"
     )
-    send_telegram(header)
+    send_and_track(header)
 
     breadth_text = (
         "🌐 <b>SCANNER SETUP FLOW</b>\n"
@@ -555,7 +561,7 @@ def _send_results(
         f"Weekly aligned: {breadth.get('weekly_aligned_count', 0)}/{breadth.get('total_passed', 0)}\n"
         "⚠️ <i>এটি deterministic scanner breadth; পুরো Nifty market direction নয়।</i>"
     )
-    send_telegram(breadth_text)
+    send_and_track(breadth_text)
 
     # User priority: see actionable pre-sweep opportunities before old post-sweep monitoring.
     categories = [
@@ -568,9 +574,9 @@ def _send_results(
         if not items:
             continue
         ordered = sorted(items, key=lambda x: candidate_sort_key(x, use_final=True), reverse=True)
-        send_telegram(f"\n{title} ({len(items)})")
+        send_and_track(f"\n{title} ({len(items)})")
         for rank, item in enumerate(ordered[:limit], 1):
-            send_telegram(format_alert(item, rank))
+            send_and_track(format_alert(item, rank))
 
     model_line = ai_meta.get("model", "deterministic fallback")
     footer = (
@@ -584,7 +590,8 @@ def _send_results(
         f"🧠 Scanner {SCANNER_VERSION} | AI: {_esc(model_line)}\n"
         f"⏱️ Completed: {total_seconds:.0f}s"
     )
-    send_telegram(footer)
+    send_and_track(footer)
+    return delivery_ok
 
 
 def main() -> int:
@@ -726,7 +733,7 @@ def main() -> int:
         market_context,
     )
     print(f"🧾 Audit artifact: {artifact}")
-    _send_results(
+    telegram_delivery_ok = _send_results(
         fundamental_results,
         breadth,
         ai_response,
@@ -734,10 +741,15 @@ def main() -> int:
         len(symbols),
         total_seconds,
     )
-    print("✅ Telegram delivery completed")
+    if telegram_delivery_ok:
+        print("✅ Telegram delivery completed")
+    else:
+        print("❌ One or more Telegram messages failed; scan will return non-zero")
     if outcome_error and STRICT_OUTCOME_TRACKING:
         print("❌ Scan marked failed because strict outcome tracking is enabled")
         return 3
+    if not telegram_delivery_ok:
+        return 4
     return 0
 
 
