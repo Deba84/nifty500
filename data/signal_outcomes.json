@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-30",
+  "updated_at": "2026-11-03",
   "signals": [
     {
       "signal_id": "CAMS|2026-09-04|CHOCH_WAIT_DISPLACEMENT|760.48",
@@ -19332,7 +19332,23 @@
       "sl": 1556.3,
       "tp1": 1776.5,
       "tp2": 1868.9,
-      "outcomes": {}
+      "outcomes": {
+        "h5": {
+          "result": "SL",
+          "event_date": "2026-10-28",
+          "bars_observed": 3
+        },
+        "h10": {
+          "result": "SL",
+          "event_date": "2026-10-28",
+          "bars_observed": 3
+        },
+        "h20": {
+          "result": "SL",
+          "event_date": "2026-10-28",
+          "bars_observed": 3
+        }
+      }
     },
     {
       "signal_id": "MGL|2026-10-27|PRE_SWEEP|1055.29",
@@ -21059,6 +21075,21 @@
       "sl": 341.4,
       "tp1": 408.2,
       "tp2": 422.8,
+      "outcomes": {}
+    },
+    {
+      "signal_id": "COLPAL|2026-10-30|PRE_SWEEP|1556.2",
+      "symbol": "COLPAL",
+      "sector": "Fast Moving Consumer Goods",
+      "signal_date": "2026-10-30",
+      "direction": "LONG",
+      "signal_state": "PRE_SWEEP",
+      "status": "WATCH",
+      "score": 75,
+      "entry_ref": 1556.2,
+      "sl": 1529.8,
+      "tp1": 1749.79,
+      "tp2": 1840.81,
       "outcomes": {}
     }
   ]
