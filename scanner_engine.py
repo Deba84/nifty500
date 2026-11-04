@@ -361,16 +361,22 @@ def _count_near_test_episodes(df: pd.DataFrame, level: Dict[str, Any], end_idx: 
         return 0
     target = float(level["target_price"])
     touch_set = set(level.get("touch_indices", []))
+
+    # Vectorized NumPy lookup avoids slow per-bar DataFrame .iloc access.
+    if level["side"] == "BSL":
+        prices = df["High"].to_numpy(dtype=float)
+        distances = np.maximum(0.0, (target - prices[start : end + 1]) / target * 100)
+    else:
+        prices = df["Low"].to_numpy(dtype=float)
+        distances = np.maximum(0.0, (prices[start : end + 1] - target) / target * 100)
+
     near_indices: List[int] = []
-    for i in range(start, end + 1):
-        if any(abs(i - t) <= 1 for t in touch_set):
-            continue
-        if level["side"] == "BSL":
-            distance = max(0.0, (target - float(df["High"].iloc[i])) / target * 100)
-        else:
-            distance = max(0.0, (float(df["Low"].iloc[i]) - target) / target * 100)
-        if distance <= NEAR_TEST_PCT:
-            near_indices.append(i)
+    for idx_rel, dist in enumerate(distances):
+        if dist <= NEAR_TEST_PCT:
+            i = start + idx_rel
+            if not any(abs(i - t) <= 1 for t in touch_set):
+                near_indices.append(i)
+
     if not near_indices:
         return 0
     episodes = 1
