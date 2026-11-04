@@ -353,24 +353,45 @@ def first_sweep_index(df: pd.DataFrame, level: Dict[str, Any]) -> Optional[int]:
     return int(start + hits[0]) if len(hits) else None
 
 
-def _count_near_test_episodes(df: pd.DataFrame, level: Dict[str, Any], end_idx: int) -> int:
-    """Count separate historical approaches, excluding level-forming touches and last 3 bars."""
+def _count_near_test_episodes(
+    df: pd.DataFrame,
+    level: Dict[str, Any],
+    end_idx: int,
+    highs: Optional[np.ndarray] = None,
+    lows: Optional[np.ndarray] = None,
+) -> int:
+    """Count separate historical approaches, excluding level-forming touches and last 3 bars.
+
+    Vectorized with NumPy to eliminate per-element pandas .iloc overhead.
+    """
     start = max(0, int(level["formation_idx"]) + 1)
     end = min(end_idx, len(df) - 4)
     if end < start:
         return 0
     target = float(level["target_price"])
     touch_set = set(level.get("touch_indices", []))
+
+    if highs is None:
+        highs = df["High"].to_numpy(dtype=float)
+    if lows is None:
+        lows = df["Low"].to_numpy(dtype=float)
+
+    prices = highs[start : end + 1] if level["side"] == "BSL" else lows[start : end + 1]
+    if level["side"] == "BSL":
+        distances = np.maximum(0.0, (target - prices) / target * 100)
+    else:
+        distances = np.maximum(0.0, (prices - target) / target * 100)
+
+    near_rel = np.flatnonzero(distances <= NEAR_TEST_PCT)
+    if len(near_rel) == 0:
+        return 0
+
     near_indices: List[int] = []
-    for i in range(start, end + 1):
-        if any(abs(i - t) <= 1 for t in touch_set):
-            continue
-        if level["side"] == "BSL":
-            distance = max(0.0, (target - float(df["High"].iloc[i])) / target * 100)
-        else:
-            distance = max(0.0, (float(df["Low"].iloc[i]) - target) / target * 100)
-        if distance <= NEAR_TEST_PCT:
+    for r in near_rel:
+        i = start + int(r)
+        if not any(abs(i - t) <= 1 for t in touch_set):
             near_indices.append(i)
+
     if not near_indices:
         return 0
     episodes = 1
@@ -419,6 +440,8 @@ def build_liquidity_levels(df: pd.DataFrame, lookback_bars: int = 180) -> List[D
 
     levels = _merge_confluent_levels(levels)
     annotated: List[Dict[str, Any]] = []
+    highs = df["High"].to_numpy(dtype=float)
+    lows = df["Low"].to_numpy(dtype=float)
     for level in levels:
         item = deepcopy(level)
         sweep_idx = first_sweep_index(df, item)
@@ -432,7 +455,7 @@ def build_liquidity_levels(df: pd.DataFrame, lookback_bars: int = 180) -> List[D
             for i in item.get("touch_indices", []) if 0 <= i < n
         ]
         item["prior_near_test_episodes"] = _count_near_test_episodes(
-            df, item, sweep_idx - 1 if sweep_idx is not None else n - 1
+            df, item, sweep_idx - 1 if sweep_idx is not None else n - 1, highs, lows
         )
         if sweep_idx is not None:
             item["sweep_date"] = str(pd.Timestamp(df.index[sweep_idx]).date())
