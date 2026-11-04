@@ -119,14 +119,18 @@ def find_swings(df: pd.DataFrame, lookback: int = 5) -> Tuple[List[Tuple[int, fl
     swing_highs: List[Tuple[int, float]] = []
     swing_lows: List[Tuple[int, float]] = []
 
+    # Performance optimization: Python built-in max/min over window slices is >2x
+    # faster than np.nanmax/np.nanmin because normalize_ohlcv guarantees clean non-NaN floats.
     for i in range(lookback, len(df) - lookback):
+        high_val = highs[i]
+        low_val = lows[i]
         high_window = highs[i - lookback : i + lookback + 1]
         low_window = lows[i - lookback : i + lookback + 1]
         # Equality is intentional: equal liquidity can contain equal pivots.
-        if highs[i] >= np.nanmax(high_window):
-            swing_highs.append((i, float(highs[i])))
-        if lows[i] <= np.nanmin(low_window):
-            swing_lows.append((i, float(lows[i])))
+        if high_val >= max(high_window):
+            swing_highs.append((i, float(high_val)))
+        if low_val <= min(low_window):
+            swing_lows.append((i, float(low_val)))
     return swing_highs, swing_lows
 
 
@@ -360,24 +364,38 @@ def _count_near_test_episodes(df: pd.DataFrame, level: Dict[str, Any], end_idx: 
     if end < start:
         return 0
     target = float(level["target_price"])
-    touch_set = set(level.get("touch_indices", []))
-    near_indices: List[int] = []
-    for i in range(start, end + 1):
-        if any(abs(i - t) <= 1 for t in touch_set):
-            continue
-        if level["side"] == "BSL":
-            distance = max(0.0, (target - float(df["High"].iloc[i])) / target * 100)
-        else:
-            distance = max(0.0, (float(df["Low"].iloc[i]) - target) / target * 100)
-        if distance <= NEAR_TEST_PCT:
-            near_indices.append(i)
-    if not near_indices:
+    touch_set = level.get("touch_indices", [])
+
+    # Performance optimization: Replace row-by-row pandas .iloc indexing with NumPy
+    # array vectorization, avoiding millions of slow Series indexing operations.
+    if level["side"] == "BSL":
+        series = df["High"].to_numpy(dtype=float)[start : end + 1]
+        distances = np.maximum(0.0, (target - series) / target * 100)
+    else:
+        series = df["Low"].to_numpy(dtype=float)[start : end + 1]
+        distances = np.maximum(0.0, (series - target) / target * 100)
+
+    near_mask = distances <= NEAR_TEST_PCT
+    if not np.any(near_mask):
         return 0
-    episodes = 1
-    for previous, current in zip(near_indices, near_indices[1:]):
-        if current - previous > 2:
-            episodes += 1
-    return episodes
+
+    indices = np.arange(start, end + 1)[near_mask]
+
+    if touch_set:
+        touch_arr = np.array(list(touch_set), dtype=int)
+        # Exclude indices close (<= 1 bar) to level-forming touches
+        valid_mask = np.all(np.abs(indices[:, None] - touch_arr) > 1, axis=1)
+        near_indices = indices[valid_mask]
+    else:
+        near_indices = indices
+
+    if len(near_indices) == 0:
+        return 0
+    if len(near_indices) == 1:
+        return 1
+
+    diffs = np.diff(near_indices)
+    return int(1 + np.sum(diffs > 2))
 
 
 def build_liquidity_levels(df: pd.DataFrame, lookback_bars: int = 180) -> List[Dict[str, Any]]:
